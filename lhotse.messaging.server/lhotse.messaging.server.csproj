@@ -46,9 +46,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.registration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Reflection.Context" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,9 +84,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lhotse.messaging.easynetq\lhotse.messaging.easynetq.csproj">
-      <Project>{e00b04bb-79a5-44f4-9ce5-56f3af3f22dc}</Project>
-      <Name>lhotse.messaging.easynetq</Name>
+    <ProjectReference Include="..\lhotse.ioc\lhotse.ioc.csproj">
+      <Project>{4bbf038d-69bd-49a0-9642-76e7fa0d4c2b}</Project>
+      <Name>lhotse.ioc</Name>
     </ProjectReference>
     <ProjectReference Include="..\lhotse.messaging\lhotse.messaging.csproj">
       <Project>{59D7741F-40AE-4E51-A416-CA268C9FC0F5}</Project>

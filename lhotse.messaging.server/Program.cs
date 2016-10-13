@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
+using lhotse.ioc;
 
 namespace lhotse.messaging.server
 {
-    static class Program
+    internal static class Program
     {
+        public static readonly IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo> Factory =
+            IOCContainer.Container.GetExport<IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo>>()?.Value;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
+        private static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+            var servicesToRun = new ServiceBase[]
             {
                 new MessagingService()
             };
-            ServiceBase.Run(ServicesToRun);
+            ServiceBase.Run(servicesToRun);
         }
     }
 }

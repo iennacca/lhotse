@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{57745684-865F-4DE1-8738-40E4132295C1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{4BBF038D-69BD-49A0-9642-76E7FA0D4C2B}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>lhotse.messaging.client</RootNamespace>
-    <AssemblyName>lhotse.messaging.client</AssemblyName>
+    <RootNamespace>lhotse.ioc</RootNamespace>
+    <AssemblyName>lhotse.ioc</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -46,17 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="IOCContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\lhotse.ioc\lhotse.ioc.csproj">
-      <Project>{4bbf038d-69bd-49a0-9642-76e7fa0d4c2b}</Project>
-      <Name>lhotse.ioc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\lhotse.messaging\lhotse.messaging.csproj">
       <Project>{59d7741f-40ae-4e51-a416-ca268c9fc0f5}</Project>
       <Name>lhotse.messaging</Name>

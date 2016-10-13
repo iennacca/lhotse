@@ -1,5 +1,5 @@
 ﻿using System;
-using lhotse.messaging.easynetq;
+using lhotse.ioc;
 
 namespace lhotse.messaging.client
 {
@@ -7,8 +7,10 @@ namespace lhotse.messaging.client
     {
         private static void Main()
         {
-            var factory = MessageHandlerSource.Factory;
-            using (var handler = factory.Client)
+            var factory = IOCContainer.Container.GetExport<IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo>>();
+
+            if (factory == null) return;
+            using (var handler = factory.Value.Client)
             {
                 handler.SubscribeProgress((t) => Console.WriteLine(t.Text));
                 Console.WriteLine(@"Sending request");

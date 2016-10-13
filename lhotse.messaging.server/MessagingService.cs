@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
-using lhotse.messaging.easynetq;
 using PostSharp.Patterns.Diagnostics;
 
 namespace lhotse.messaging.server
@@ -38,7 +37,6 @@ namespace lhotse.messaging.server
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
 
-        private readonly IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo> _factory = MessageHandlerSource.Factory;
         private IRPCServer<TextRequest, TextResponse, TextProgressInfo> _handler;
 
         public MessagingService()
@@ -61,7 +59,7 @@ namespace lhotse.messaging.server
             SetServiceStatus(ServiceHandle, ref serviceStatus);
 
             // Run the messaging server
-            _handler = _factory.Server;
+            _handler = Program.Factory.Server;
 
             // Update the service state to Running.
             serviceStatus.dwCurrentState = ServiceState.ServiceRunning;
