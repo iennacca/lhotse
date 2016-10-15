@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Registration;
 using System.Reflection;
+
 using lhotse.messaging;
 
 namespace lhotse.ioc
@@ -10,8 +11,7 @@ namespace lhotse.ioc
     public static class IOCContainer
     {
         public static readonly string ModuleSearchPattern = "lhotse.messaging*.dll";
-
-        public static readonly CompositionContainer Container = Create();
+        private static readonly CompositionContainer Container = Create();
 
         private static CompositionContainer Create()
         {
@@ -33,5 +33,8 @@ namespace lhotse.ioc
                                                   CompositionOptions.DisableSilentRejection |
                                                   CompositionOptions.IsThreadSafe);
         }
+
+        public static Lazy<IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo>> Factory = 
+            Container.GetExport<IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo>>();
     }
 }

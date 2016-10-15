@@ -5,8 +5,7 @@ namespace lhotse.messaging.server
 {
     internal static class Program
     {
-        public static readonly IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo> Factory =
-            IOCContainer.Container.GetExport<IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo>>()?.Value;
+        public static readonly IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo> Factory = IOCContainer.Factory.Value;
 
         /// <summary>
         /// The main entry point for the application.

@@ -7,10 +7,10 @@ namespace lhotse.messaging.client
     {
         private static void Main()
         {
-            var factory = IOCContainer.Container.GetExport<IMessageHandlerFactory<TextRequest, TextResponse, TextProgressInfo>>();
+            var factory = IOCContainer.Factory.Value;
 
             if (factory == null) return;
-            using (var handler = factory.Value.Client)
+            using (var handler = factory.Client)
             {
                 handler.SubscribeProgress((t) => Console.WriteLine(t.Text));
                 Console.WriteLine(@"Sending request");
