@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using NetMQ;
 using NetMQ.Sockets;
@@ -7,16 +8,20 @@ namespace lhotse.messaging.zeromq
 {
     public class LazyPirateServer : IRPCServer<TextRequest, TextResponse, TextProgressInfo>
     {
-        public LazyPirateServer(MessageHandlerUri address)
+        public LazyPirateServer(MessageHandlerUri address, MessageHandlerUri statusUri, string topic)
         {
             Address = address;
             Type = HandlerProtocol.Reply;
+            Topic = topic;
+            StatusUri = statusUri;
         }
 
         public void Dispose() { }
 
         public MessageHandlerUri Address { get; }
         public HandlerProtocol Type { get; }
+        public string Topic { get; }
+        public MessageHandlerUri StatusUri { get; }
 
         public void Respond(Func<TextRequest, TextResponse> callback)
         {
@@ -36,7 +41,13 @@ namespace lhotse.messaging.zeromq
 
         public void PublishProgress(TextProgressInfo progressInfo)
         {
-            throw new NotImplementedException();
+            Trace.WriteLine($"PublishProgress: {progressInfo}");
+            using (var socket = new PublisherSocket())
+            {
+                socket.Options.SendHighWatermark = 1000;
+                socket.Bind(StatusUri.OriginalString);
+                socket.SendMoreFrame(Topic).SendFrame(progressInfo.Text);
+            }
         }
     }
 }
