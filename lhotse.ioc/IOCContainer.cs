@@ -11,6 +11,7 @@ namespace lhotse.ioc
     public static class IOCContainer
     {
         public static readonly string ModuleSearchPattern = "lhotse.messaging*.dll";
+        public static readonly string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory + "lib\\";
         private static readonly CompositionContainer Container = Create();
 
         private static CompositionContainer Create()
@@ -26,8 +27,7 @@ namespace lhotse.ioc
             aggregateCatalog.Catalogs.Add(
                 new AssemblyCatalog(Assembly.GetExecutingAssembly(), registrationBuilder));
 
-            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            aggregateCatalog.Catalogs.Add(new DirectoryCatalog(baseDirectory, ModuleSearchPattern, registrationBuilder));
+            aggregateCatalog.Catalogs.Add(new DirectoryCatalog(BaseDirectory, ModuleSearchPattern, registrationBuilder));
 
             return new CompositionContainer(aggregateCatalog,
                                                   CompositionOptions.DisableSilentRejection |
