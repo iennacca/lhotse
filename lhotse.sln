@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lhotse.messaging.zeromq", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lhotse.ioc", "lhotse.ioc\lhotse.ioc.csproj", "{4BBF038D-69BD-49A0-9642-76E7FA0D4C2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lhotse.postsharp", "lhotse.postsharp\lhotse.postsharp.csproj", "{4E04BB80-0008-4A53-8566-A9F472A6158A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{4BBF038D-69BD-49A0-9642-76E7FA0D4C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BBF038D-69BD-49A0-9642-76E7FA0D4C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BBF038D-69BD-49A0-9642-76E7FA0D4C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E04BB80-0008-4A53-8566-A9F472A6158A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E04BB80-0008-4A53-8566-A9F472A6158A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E04BB80-0008-4A53-8566-A9F472A6158A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E04BB80-0008-4A53-8566-A9F472A6158A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

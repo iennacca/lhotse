@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
-using PostSharp.Patterns.Diagnostics;
 
 namespace lhotse.messaging.server
 {
@@ -47,7 +46,6 @@ namespace lhotse.messaging.server
         private CancellationTokenSource _ctSource;
         private CancellationToken _ct;
 
-        [Log]
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.
@@ -73,18 +71,9 @@ namespace lhotse.messaging.server
 
         private void RunServer()
         {
-            try
-            {
-                _handler.Respond(ProcessRequest);
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine($"Exception: {ex.Message}");
-                _handler.Dispose();
-            }
+            _handler.Respond(ProcessRequest);
         }
 
-        [Log]
         protected override void OnStop()
         {
             _ctSource.Cancel();
