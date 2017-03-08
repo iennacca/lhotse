@@ -19,22 +19,22 @@ namespace lhotse.postsharp
             _className = method.DeclaringType;
         }
 
-        public override void OnEntry(MethodExecutionArgs args)
+        public sealed override void OnEntry(MethodExecutionArgs args)
         {
-            Trace.WriteLine($"[{DateTime.Now}] {_className}.{_methodName}: Start:");
+            Trace.WriteLine($"[{DateTime.Now}][{_className}.{_methodName}]:Start:");
             base.OnEntry(args);
             _startTime = DateTime.Now;
         }
 
-        public override void OnExit(MethodExecutionArgs args)
+        public sealed override void OnExit(MethodExecutionArgs args)
         {
-            Trace.WriteLine($"[{DateTime.Now}] {_className}.{_methodName}: End: {(DateTime.Now-_startTime).Milliseconds}");
+            Trace.WriteLine($"[{DateTime.Now}][{_className}.{_methodName}]:End: {(DateTime.Now-_startTime).Milliseconds} ms");
             base.OnExit(args);
         }
 
-        public override void OnException(MethodExecutionArgs args)
+        public sealed override void OnException(MethodExecutionArgs args)
         {
-            Trace.WriteLine($"[{DateTime.Now}] {_className}.{_methodName}: Exception: {args.Exception.Message}");
+            Trace.WriteLine($"[{DateTime.Now}][{_className}.{_methodName}]:Exception: {args.Exception.Message}");
             base.OnException(args);
         }
     }
