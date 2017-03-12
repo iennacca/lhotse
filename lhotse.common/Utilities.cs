@@ -7,7 +7,7 @@ namespace lhotse.common
     {
         public static void WriteInfoLine(string message)
         {
-            Trace.WriteLine($"[{DateTime.Now}][INFO]{message}");
+            Trace.WriteLine($"[{DateTime.Now}][INFO]:{message}");
         }
     }
 }

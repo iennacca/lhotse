@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using lhotse.common;
 using lhotse.ioc;
 
 namespace lhotse.messaging.client
@@ -9,7 +9,7 @@ namespace lhotse.messaging.client
         private static void Main()
         {
             var factory = IOCContainer.Factory.Value;
-            Trace.WriteLine($"[{DateTime.Now}][INFO]: Assembly:{factory.HandlerName}; Version:{factory.HandlerVersion}");
+            TraceExtensions.WriteInfoLine($"Assembly:{factory.HandlerName}; Version:{factory.HandlerVersion}");
 
             using (var handler = factory.Client)
             {

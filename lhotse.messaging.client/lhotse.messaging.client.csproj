@@ -52,6 +52,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\lhotse.common\lhotse.common.csproj">
+      <Project>{032a15c7-5054-4a7b-a7b7-2372d488980b}</Project>
+      <Name>lhotse.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\lhotse.ioc\lhotse.ioc.csproj">
       <Project>{4bbf038d-69bd-49a0-9642-76e7fa0d4c2b}</Project>
       <Name>lhotse.ioc</Name>
