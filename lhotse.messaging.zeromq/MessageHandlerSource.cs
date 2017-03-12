@@ -9,7 +9,7 @@ namespace lhotse.messaging.zeromq
         public static string Topic = "Status";
         public static MessageHandlerUri StatusUri = new MessageHandlerUri("tcp://127.0.0.1:5001");
         public static MessageHandlerSource Factory = new MessageHandlerSource();
-        private static readonly AssemblyName AssemblyNameInfo = Assembly.GetEntryAssembly().GetName();
+        private static readonly AssemblyName AssemblyNameInfo = Assembly.GetExecutingAssembly().GetName();
 
         private string _handlerName;
         private Version _handlerVersion;

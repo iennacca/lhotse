@@ -29,7 +29,7 @@ namespace lhotse.messaging.nanomsg
     {
         public static MessageHandlerSource Factory = new MessageHandlerSource();
         private static readonly MessageHandlerUri AddressUri = new MessageHandlerUri("inproc://reqrep_test");
-        private static readonly AssemblyName AssemblyNameInfo = Assembly.GetEntryAssembly().GetName();
+        private static readonly AssemblyName AssemblyNameInfo = Assembly.GetExecutingAssembly().GetName();
 
         private string _handlerName;
         private Version _handlerVersion;
