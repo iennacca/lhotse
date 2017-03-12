@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using lhotse.ioc;
 
 namespace lhotse.messaging.client
@@ -8,8 +9,8 @@ namespace lhotse.messaging.client
         private static void Main()
         {
             var factory = IOCContainer.Factory.Value;
+            Trace.WriteLine($"[{DateTime.Now}][INFO]: Assembly:{factory.HandlerName}; Version:{factory.HandlerVersion}");
 
-            if (factory == null) return;
             using (var handler = factory.Client)
             {
                 handler.SubscribeProgress((t) => Console.WriteLine(t.Text));

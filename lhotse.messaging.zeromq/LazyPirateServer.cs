@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
 using NetMQ;
 using NetMQ.Sockets;
+using lhotse.common;
 
 namespace lhotse.messaging.zeromq
 {
@@ -41,7 +41,7 @@ namespace lhotse.messaging.zeromq
 
         public void PublishProgress(TextProgressInfo progressInfo)
         {
-            Trace.WriteLine($"PublishProgress: {progressInfo}");
+            TraceExtensions.WriteInfoLine($"PublishProgress: {progressInfo.Text}");
             using (var socket = new PublisherSocket())
             {
                 socket.Options.SendHighWatermark = 1000;

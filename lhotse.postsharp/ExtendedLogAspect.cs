@@ -21,20 +21,21 @@ namespace lhotse.postsharp
 
         public sealed override void OnEntry(MethodExecutionArgs args)
         {
-            Trace.WriteLine($"[{DateTime.Now}][{_className}.{_methodName}]:Start:");
-            base.OnEntry(args);
+            Trace.WriteLine($"[{DateTime.Now}][ENTRY][{_className}.{_methodName}]:");
             _startTime = DateTime.Now;
+            base.OnEntry(args);
         }
 
         public sealed override void OnExit(MethodExecutionArgs args)
         {
-            Trace.WriteLine($"[{DateTime.Now}][{_className}.{_methodName}]:End: {(DateTime.Now-_startTime).Milliseconds} ms");
+            Trace.WriteLine($"[{DateTime.Now}][EXIT][{_className}.{_methodName}]: {(DateTime.Now-_startTime).Milliseconds} ms");
             base.OnExit(args);
         }
 
         public sealed override void OnException(MethodExecutionArgs args)
         {
-            Trace.WriteLine($"[{DateTime.Now}][{_className}.{_methodName}]:Exception: {args.Exception.Message}");
+            Trace.WriteLine($"[{DateTime.Now}][EXCEPTION][{_className}.{_methodName}]: Message:{args.Exception.Message}");
+            Trace.WriteLine($"Stack trace:{args.Exception.StackTrace}");
             base.OnException(args);
         }
     }

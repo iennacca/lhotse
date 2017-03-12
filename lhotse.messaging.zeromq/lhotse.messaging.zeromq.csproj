@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\lhotse.common\lhotse.common.csproj">
+      <Project>{032a15c7-5054-4a7b-a7b7-2372d488980b}</Project>
+      <Name>lhotse.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\lhotse.messaging\lhotse.messaging.csproj">
       <Project>{59d7741f-40ae-4e51-a416-ca268c9fc0f5}</Project>
       <Name>lhotse.messaging</Name>

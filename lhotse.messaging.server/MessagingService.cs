@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
+using lhotse.common;
 
 namespace lhotse.messaging.server
 {
@@ -81,17 +81,12 @@ namespace lhotse.messaging.server
 
         private TextResponse ProcessRequest(TextRequest request)
         {
-            _handler.PublishProgress(new TextProgressInfo("Entering: ProcessRequest"));
-
             SimulateLongRunningTask();
 
             var rev = request.Text.ToArray().Reverse().ToArray();
             var revstr = new string(rev);
 
-            var datetimestamp = DateTime.Now.ToString();
-            var returnString = $"RunServer: [{datetimestamp}]: {revstr}";
-            Trace.WriteLine(returnString);
-            _handler.PublishProgress(new TextProgressInfo("Leaving: ProcessRequest"));
+            TraceExtensions.WriteInfoLine($"RunServer: {revstr}");
             return new TextResponse(revstr);
         }
 
@@ -99,11 +94,8 @@ namespace lhotse.messaging.server
         {
             for (var i = 0; i < 10; i++)
             {
-                var datetimestamp = DateTime.Now.ToString();
-                var progressInfo = $"SimulateLongRunningTask: [{datetimestamp}]: {i * 10} %";
-
                 Thread.Sleep(1000);
-                _handler.PublishProgress(new TextProgressInfo(progressInfo));
+                _handler.PublishProgress(new TextProgressInfo($"SimulateLongRunningTask: {i * 10} %"));
             }
         }
     }

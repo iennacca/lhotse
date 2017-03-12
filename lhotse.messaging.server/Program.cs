@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.ServiceProcess;
 using lhotse.ioc;
 
@@ -13,6 +14,9 @@ namespace lhotse.messaging.server
         /// </summary>
         private static void Main()
         {
+            if (Factory == null) return;
+            Trace.WriteLine($"[{DateTime.Now}][INFO]: Assembly:{Factory.HandlerName}; Version:{Factory.HandlerVersion}");
+
             var servicesToRun = new ServiceBase[]
             {
                 new MessagingService()

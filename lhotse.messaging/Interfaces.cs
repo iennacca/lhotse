@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace lhotse.messaging
 {
@@ -45,6 +46,8 @@ namespace lhotse.messaging
 
     public interface IMessageHandlerFactory<TRequest, TResponse, TProgressInfo>
     {
+        string HandlerName { get; }
+        Version HandlerVersion{ get; }
         IRPCServer<TRequest, TResponse, TProgressInfo> Server { get; }
         IRPCClient<TRequest, TResponse, TProgressInfo> Client { get; }
     }

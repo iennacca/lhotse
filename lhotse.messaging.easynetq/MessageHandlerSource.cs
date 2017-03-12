@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using EasyNetQ;
 
 namespace lhotse.messaging.easynetq
@@ -7,10 +8,15 @@ namespace lhotse.messaging.easynetq
     {
         public static MessageHandlerSource Factory = new MessageHandlerSource();
         private static readonly MessageHandlerUri AddressUri = new MessageHandlerUri("localhost");
+        private static readonly AssemblyName AssemblyNameInfo = Assembly.GetEntryAssembly().GetName();
 
+        private string _handlerName;
+        private Version _handlerVersion;
         private IRPCClient<TextRequest, TextResponse, TextProgressInfo> _client; 
         private IRPCServer<TextRequest, TextResponse, TextProgressInfo> _server;
 
+        public string HandlerName => _handlerName ?? (_handlerName = AssemblyNameInfo.Name);
+        public Version HandlerVersion => _handlerVersion ?? (_handlerVersion = AssemblyNameInfo.Version);
         public IRPCClient<TextRequest, TextResponse, TextProgressInfo> Client => _client ?? (_client = new ClientMessageHandler(AddressUri));
         public IRPCServer<TextRequest, TextResponse, TextProgressInfo> Server => _server ?? (_server = new ServerMessageHandler(AddressUri));
 
